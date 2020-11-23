@@ -13,14 +13,14 @@
     {
       "kind": "main",
       "tag": "com-fd-djaja-sap-sac-excel",
-      "url": "https://raw.githubusercontent.com/gouthamsundaram100/SACXLSXFileUpload/master/CustomWidget/excel.js",
+      "url": "https://gouthamsundaram100.github.io/CustomWidget/excel.js",
       "integrity": "",
       "ignoreIntegrity": true
     },
     {
       "kind": "styling",
       "tag": "com-fd-djaja-sap-sac-excel-aps",
-      "url": "https://raw.githubusercontent.com/gouthamsundaram100/SACXLSXFileUpload/master/CustomWidget/aps_excel.js",
+      "url": "https://gouthamsundaram100.github.io/CustomWidget/aps_excel.js",
       "integrity": "",
       "ignoreIntegrity": true
     }
