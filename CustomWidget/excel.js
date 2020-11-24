@@ -367,7 +367,7 @@
                                                         //'LOCK_FLAG': rec[8].trim(),
                                                     });
                                                     //materialMember=({id:ID})
-                                                    PlanningModel_1.createMembers("Product", {id: rec[2].trim(), description: ""});
+                                                    PlanningModel_1.createMembers("Product", {id: rec[2].trim()});
 
                                                 }
                                             }
