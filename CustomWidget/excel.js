@@ -367,7 +367,10 @@
                                                         //'LOCK_FLAG': rec[8].trim(),
                                                     });
                                                     //materialMember=({id:ID})
-                                                    PlanningModel_1.createMembers({id: i, properties: {Account: rec[0].trim(),Product:rec[1].trim(),Date:rec[2].trim(),Values:rec[3].trim()}});
+                                                    PlanningModel_1.createMembers("Account", {
+                                                    	 id: "Test",
+                                                    	 description: "Berlin"
+                                                    	},"Product",{id:"Test1",description:"USA"});
 
                                                 }
                                             }
