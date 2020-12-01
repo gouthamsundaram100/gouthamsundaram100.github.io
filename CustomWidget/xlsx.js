@@ -8,7 +8,9 @@
         "undefined" != typeof window ? f = window : "undefined" != typeof global ? f = global : "undefined" != typeof self && (f = self), f.JSZip = e()
     }
 }(function() {
-    var define, module, exports;
+	global define
+	//var define, module, exports;
+    var module, exports;
     return function e(t, n, r) {
         function s(o, u) {
             if (!n[o]) {
