@@ -1,5 +1,6 @@
 (function() {
-    let _shadowRoot;
+    console.log("ABC")
+	let _shadowRoot;
     let _id;
     let _result ;
 
