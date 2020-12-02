@@ -136,7 +136,7 @@
         onCustomWidgetAfterUpdate(changedProperties) {
             var that = this;
 
-            let xlsxjs = await import("https://gouthamsundaram100.github.io/CustomWidget/xlsx.js");
+            let xlsxjs = require("https://gouthamsundaram100.github.io/CustomWidget/xlsx.js");
             async function LoadLibs() {
                 try {
                     await loadScript(xlsxjs, _shadowRoot);
