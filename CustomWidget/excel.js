@@ -355,7 +355,7 @@
                                                     //5].trim().length + rec[6].trim().length + rec[7].trim().length + rec[8].trim().length;
                                                 if (len > 0) {
                                                     rec_count = rec_count + 1;
-                                                    /*result_final.push({
+                                                    result_final.push({
                                                         'ID': i,
                                                         'Account': rec[0].trim(),
                                                         'Product': rec[1].trim(),
@@ -367,9 +367,11 @@
                                                         //'COMMENTS': rec[7].trim().replace(/["'\n\r]/g, ""),
                                                         //'LOCK_FLAG': rec[8].trim(),
                                                     });
-                                                    */
                                                     //materialMember=({id:ID})
-                                                    PlanningModel_1.createMembers("Product",{id:"CD",description:"Material2"});
+                                                    PlanningModel_1.createMembers("Account", {
+                                                    	 id: "Test",
+                                                    	 description: "Berlin"
+                                                    	},"Product",{id:"Test1",description:"USA"});
 
                                                 }
                                             }
