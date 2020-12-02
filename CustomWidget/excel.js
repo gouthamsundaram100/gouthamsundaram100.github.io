@@ -271,7 +271,7 @@
            	//},"Product",{id:"Test1",description:"USA"});
             
             //### Controller ###
-            sap.ui.require([
+            sap.ui.define([
                 "jquery.sap.global",
                 "sap/ui/core/mvc/Controller",
                 "sap/ui/model/json/JSONModel",
