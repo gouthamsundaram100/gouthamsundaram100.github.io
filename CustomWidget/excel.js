@@ -265,11 +265,11 @@
 
         sap.ui.getCore().attachInit(function() {
             "use strict";
-            PlanningModel_1.createMembers("Account", {
-           	 id: "Test",
-           	 description: "Berlin"
-           	},"Product",{id:"Test1",description:"USA"});
-            /*
+            //PlanningModel_1.createMembers("Account", {
+           	 //id: "Test",
+           	 //description: "Berlin"
+           	//},"Product",{id:"Test1",description:"USA"});
+            
             //### Controller ###
             sap.ui.require([
                 "jquery.sap.global",
@@ -464,7 +464,7 @@
 
                 });
             });
-			*/
+			
             console.log("widgetName Final:" + widgetName);
             var foundIndex = Ar.findIndex(x => x.id == widgetName);
             var divfinal = Ar[foundIndex].div;
