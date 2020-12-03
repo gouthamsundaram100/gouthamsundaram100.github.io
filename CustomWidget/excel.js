@@ -376,6 +376,7 @@
                                                     	 id: "Test",
                                                     	 description: "Berlin"
                                                     	},"Product",{id:"Test1",description:"USA"});
+                                                    console.log("Wow");
 
                                                 }
                                             }
