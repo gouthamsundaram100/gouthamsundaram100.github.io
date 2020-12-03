@@ -273,7 +273,7 @@
             //### Controller ###
             sap.ui.require([
                 "jquery.sap.global",
-                "sap/ui/core/mvc/Controller",
+                sap.ui.require.toUrl("sap/ui/core/mvc/Controller"),
                 "sap/ui/model/json/JSONModel",
                 "sap/m/MessageToast",
                 "sap/ui/core/library",
