@@ -132,7 +132,7 @@
                 this._designMode = changedProperties["designMode"];
             }
         }
-
+        /*
         onCustomWidgetAfterUpdate(changedProperties) {
             var that = this;
 
@@ -148,7 +148,7 @@
             }
             LoadLibs();
         }
-
+		*/
         _renderExportButton() {
             let components = this.metadata ? JSON.parse(this.metadata)["components"] : {};
         }
