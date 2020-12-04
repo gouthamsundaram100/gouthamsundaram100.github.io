@@ -269,7 +269,7 @@
     	    //### Controller ###
     	    sap.ui.require([
     	      "jquery.sap.global",
-    	      "sapui5.hana.ondemand.com/1.60.29/resources/ui/core/mvc/Controller",
+    	      "sap/ui/core/mvc/Controller-dbg",
     	      "sap/ui/model/json/JSONModel",
     	      "sap/m/MessageToast",
     	      "sap/ui/core/library",
