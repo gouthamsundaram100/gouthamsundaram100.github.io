@@ -132,9 +132,9 @@
                 this._designMode = changedProperties["designMode"];
             }
         }
-        
+        /*
         onCustomWidgetAfterUpdate(changedProperties) {
-            /*
+            
         	var that = this;
 
             let xlsxjs = "https://gouthamsundaram100.github.io/CustomWidget/xlsx.js";
@@ -147,10 +147,10 @@
                     loadthis(that, changedProperties);
                 }
             }
-            */
+            
             LoadLibs();
         }
-		
+		*/
         _renderExportButton() {
             let components = this.metadata ? JSON.parse(this.metadata)["components"] : {};
         }
