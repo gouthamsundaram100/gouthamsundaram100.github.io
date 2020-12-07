@@ -277,7 +277,7 @@
     	    console.log("Hello-5")
     	    sap.ui.require([
     	      "jquery.sap.global",
-    	      "myView/Template/sap/ui/core/mvc/Controller",
+    	      "sap/ui/core/mvc/Controller",
     	      "sap/ui/model/json/JSONModel",
     	      "sap/m/MessageToast",
     	      "sap/ui/core/library",
