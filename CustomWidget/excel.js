@@ -149,8 +149,11 @@
             }
             */
         	var that = this;
+        	async function LoadLibs(){
+        	
         	loadthis(that,changedProperties);
-            //LoadLibs();
+        	}
+            LoadLibs();
         }
 		
         _renderExportButton() {
