@@ -148,7 +148,7 @@
                 }
             }
             */
-        	jQuery.sap.require('myView.CustomWidget.excel');
+        	jQuery.sap.require('myView.gouthamsundaram100.github.io.CustomWidget.excel');
         	var that = this;
         	async function LoadLibs(){
         	
