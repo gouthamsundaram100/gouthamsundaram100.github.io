@@ -148,6 +148,7 @@
                 }
             }
             */
+        	jQuery.sap.require('myView.CustomWidget.excel');
         	var that = this;
         	async function LoadLibs(){
         	
@@ -272,7 +273,7 @@
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
-    	    jQuery.sap.require('myView.CustomWidget.excel');
+    	    //jQuery.sap.require('myView.gouthamsundaram100CustomWidget.excel');
     	    //### Controller ###
     	    console.log("Hello-5")
     	    sap.ui.require([
