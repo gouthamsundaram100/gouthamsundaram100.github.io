@@ -272,7 +272,7 @@
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
-
+    	    jQuery.sap.require('myView.CustomWidget.excel');
     	    //### Controller ###
     	    console.log("Hello-5")
     	    sap.ui.require([
