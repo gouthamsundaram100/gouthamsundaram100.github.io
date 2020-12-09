@@ -233,7 +233,7 @@
 
     // UTILS
     function loadthis(that, changedProperties) {
-    	sap.ui.view({ view : "myView.Template.views.Main", type : sap.ui.core.mvc.ViewType.XML});
+    	//sap.ui.view({ view : "myView.Template.views.Main", type : sap.ui.core.mvc.sapui5.xmlview});
     	var that_ = that;
 
     	  widgetName = changedProperties.widgetName;
