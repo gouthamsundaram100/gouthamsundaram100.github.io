@@ -275,6 +275,7 @@
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
+    	    jQuery.sap.registerModulePath("myView", "./");
     	    //jQuery.sap.require('myView.gouthamsundaram100CustomWidget.excel');
     	    //### Controller ###
     	    console.log("Hello-5")
