@@ -275,7 +275,7 @@
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
-    	    //jQuery.sap.registerModulePath("myView.Template", "https://sapui5.hana.ondemand.com/1.60.29/resources/sap/ui/core/mvc/Controller-dbg.js");
+    	    jQuery.sap.registerModulePath("myView.Template", "https://gouthamsundaram100.github.io/SAP/");
     	    //jQuery.sap.require('myView.gouthamsundaram100CustomWidget.excel');
     	    //sap.ui.localResources("myView.Template");
     	    //sap.ui.localResources("myView");
@@ -283,7 +283,7 @@
     	    console.log("Hello-5")
     	    sap.ui.require([
     	      "jquery.sap.global",
-    	      "sap/ui/core/mvc/Controller-dbg",
+    	      "Controller",
     	      "sap/ui/model/json/JSONModel",
     	      "sap/m/MessageToast",
     	      "sap/ui/core/library",
