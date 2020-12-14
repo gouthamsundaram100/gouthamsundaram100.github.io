@@ -275,10 +275,10 @@
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
-    	    //jQuery.sap.registerModulePath("myView", "https://sapui5.hana.ondemand.com/1.60.29/resources");
+    	    jQuery.sap.registerModulePath("myView", "https://sapui5.hana.ondemand.com/1.60.29/resources/");
     	    //jQuery.sap.require('myView.gouthamsundaram100CustomWidget.excel');
     	    //sap.ui.localResources("myView.Template");
-    	    sap.ui.localResources("myView");
+    	    //sap.ui.localResources("myView");
     	    //### Controller ###
     	    console.log("Hello-5")
     	    sap.ui.require([
