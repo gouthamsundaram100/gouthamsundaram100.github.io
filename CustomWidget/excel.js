@@ -275,7 +275,7 @@
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
-    	    //jQuery.sap.registerModulePath("myView", "/resources/sap-ui-core.js");
+    	    jQuery.sap.registerModulePath("myView", "https://sapui5.hana.ondemand.com/resources/sap-ui-core.js");
     	    //jQuery.sap.require('myView.gouthamsundaram100CustomWidget.excel');
     	    //sap.ui.localResources("myView.Template");
     	    //sap.ui.localResources("myView");
