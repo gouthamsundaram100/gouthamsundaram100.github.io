@@ -304,7 +304,7 @@
 
     	      var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
     	      console.log("Hello-6");
-    	      return Controller.extend("sap.ui.CustomWidget.myView.Template.App", {
+    	      return Controller.extend("sap.ui.CustomWidget.myView.App", {
 
     	        onInit: function() {
     	          console.log(that._export_settings.title);
