@@ -278,7 +278,7 @@
     	    //jQuery.sap.registerModulePath("myView", "https://cors-anywhere.herokuapp.com/https://sapui5.hana.ondemand.com/resources/");
     	    //jQuery.sap.require('myView.gouthamsundaram100CustomWidget.excel');
     	    //sap.ui.localResources("myView.Template");
-    	    //sap.ui.localResources("myView");
+    	    sap.ui.localResources("myView");
     	    //### Controller ###
     	    console.log("Hello-5")
     	    sap.ui.require([
