@@ -281,7 +281,7 @@
     	    //sap.ui.localResources("myView");
     	    //### Controller ###
     	    console.log("Hello-5")
-    	    sap.ui.require([
+    	    sap.ui.define([
     	      "jquery.sap.global",
     	      "sap/ui/core/mvc/Controller",
     	      "sap/ui/model/json/JSONModel",
