@@ -4,6 +4,7 @@
   "name": "excel",
   "description": "Excel",
   "newInstancePrefix": "Excel",
+  "icon": "https://gouthamsundaram100.github.io/Image/download.png",
   "vendor": "Ferry Djaja",
   "eula": "",
   "license": "",
