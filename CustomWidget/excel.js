@@ -154,7 +154,7 @@
         	
         	loadthis(that,changedProperties);
         	}
-            //LoadLibs();
+            LoadLibs();
         }
 		
         _renderExportButton() {
@@ -232,7 +232,7 @@
     customElements.define("com-fd-djaja-sap-sac-excel", Excel);
 
     // UTILS
-    /*
+    
     function loadthis(that, changedProperties) {
     	//sap.ui.view({ view : "myView.Template.views.oView_Excel_1", type : sap.ui.core.mvc.sapui5.xmlview});
     	var that_ = that;
@@ -273,7 +273,7 @@
     	  }
 
     	  that_._renderExportButton();
-
+    	  /*
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
     	    //jQuery.sap.registerModulePath("myView.Template", "https://sapui5.hana.ondemand.com/1.60.29/resources/");
@@ -463,8 +463,9 @@
     	      oView.byId("idfileUploader").setEnabled(false);
     	    }
     	  });
+    	  */
     	}
-	*/
+    
     function createGuid() {
         return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
             let r = Math.random() * 16 | 0,
