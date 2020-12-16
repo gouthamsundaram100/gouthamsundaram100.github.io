@@ -154,7 +154,7 @@
         	
         	loadthis(that,changedProperties);
         	}
-            LoadLibs();
+            //LoadLibs();
         }
 		
         _renderExportButton() {
@@ -232,6 +232,7 @@
     customElements.define("com-fd-djaja-sap-sac-excel", Excel);
 
     // UTILS
+    /*
     function loadthis(that, changedProperties) {
     	//sap.ui.view({ view : "myView.Template.views.oView_Excel_1", type : sap.ui.core.mvc.sapui5.xmlview});
     	var that_ = that;
@@ -463,7 +464,7 @@
     	    }
     	  });
     	}
-
+	*/
     function createGuid() {
         return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
             let r = Math.random() * 16 | 0,
