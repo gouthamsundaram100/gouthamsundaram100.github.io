@@ -248,7 +248,7 @@
 
     	  if (that._firstConnection === 0) {
     	    let div0 = document.createElement('div');
-    	    div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="sap.myView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
+    	    div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="myView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
     	    _shadowRoot.appendChild(div0);
     	    //jQuery.sap.require('myView.gouthamsundaram100\\.github\\.io.CustomWidget.excel');
     	    //sap.ui.view({ view : "myView.Template.oView_Excel_1", type : sap.ui.core.mvc.sapui5.xmlview.XML});
@@ -306,7 +306,7 @@
     	      var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
     	      console.log("Hello-6");
     	      //sap.ui.CustomWidget.myView.App
-    	      return Controller.extend("sap.myView.Template", {
+    	      return Controller.extend("myView.Template", {
 
     	        onInit: function() {
     	          console.log(that._export_settings.title);
