@@ -305,10 +305,10 @@
     	      "use strict";
 
     	      var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
-    	      console.log("Hello-6");
+    	      
     	      //sap.ui.CustomWidget.myView.App
     	      return sap.ui.core.mvc.Controller.extend("MyView.Template", {
-    	    	  console.log("Hello?");
+    	    	  
     	        onInit: function() {
     	          console.log(that._export_settings.title);
     	          console.log("widgetName:" + that.widgetName);
@@ -317,7 +317,7 @@
     	            that._firstConnection = 1;
     	          }
     	        },
-
+    	        console.log("Hello-6");
     	        onValidate: function(e) {
 
     	          var fU = this.getView().byId("idfileUploader");
