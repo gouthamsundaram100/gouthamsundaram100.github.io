@@ -439,7 +439,7 @@
     	        },
 
     	      });
-    	    });
+    	    //});
 
     	    console.log("widgetName Final:" + widgetName);
     	    var foundIndex = Ar.findIndex(x => x.id == widgetName);
