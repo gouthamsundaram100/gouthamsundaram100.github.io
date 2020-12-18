@@ -234,11 +234,9 @@
     // UTILS
     
     function loadthis(that, changedProperties) {
-    	//sap.ui.view({ view : "myView.Template.views.oView_Excel_1", type : sap.ui.core.mvc.sapui5.xmlview});
-    	var that_ = that;
+    	  var that_ = that;
 
     	  widgetName = changedProperties.widgetName;
-    	  //console.log(widgetName)
     	  if (typeof widgetName === "undefined") {
     	    widgetName = that._export_settings.title.split("|")[0];
     	  }
@@ -249,10 +247,9 @@
 
     	  if (that._firstConnection === 0) {
     	    let div0 = document.createElement('div');
-    	    div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="MyView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
+    	    div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="myView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
     	    _shadowRoot.appendChild(div0);
-    	    //jQuery.sap.require('myView.gouthamsundaram100\\.github\\.io.CustomWidget.excel');
-    	    //sap.ui.view({ view : "myView.Template.oView_Excel_1", type : sap.ui.core.mvc.sapui5.xmlview.XML});
+
     	    let div1 = document.createElement('div');
     	    div1.innerHTML = '<?xml version="1.0"?><script id="myXMLFragment_' + widgetName + '" type="sapui5/fragment"><core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"><SelectDialog title="Partner Number" class="sapUiPopupWithPadding"  items="{' + widgetName + '>/}" search="_handleValueHelpSearch"  confirm="_handleValueHelpClose"  cancel="_handleValueHelpClose"  multiSelect="true" showClearButton="true" rememberSelections="true"><StandardListItem icon="{' + widgetName + '>ProductPicUrl}" iconDensityAware="false" iconInset="false" title="{' + widgetName + '>partner}" description="{' + widgetName + '>partner}" /></SelectDialog></core:FragmentDefinition></script>';
     	    _shadowRoot.appendChild(div1);
@@ -274,15 +271,11 @@
     	  }
 
     	  that_._renderExportButton();
-    	  
+
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
-    	    //jQuery.sap.registerModulePath("myView.Template", "https://sapui5.hana.ondemand.com/1.60.29/resources/");
-    	    //jQuery.sap.require('myView.gouthamsundaram100CustomWidget.excel');
-    	    //sap.ui.localResources("myView.Template");
-    	    //sap.ui.localResources("myView");
+
     	    //### Controller ###
-    	    //console.log("Hello-5")
     	    sap.ui.require([
     	      "jquery.sap.global",
     	      "sap/ui/core/mvc/Controller",
@@ -305,10 +298,9 @@
     	      "use strict";
 
     	      var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
-    	      
-    	      //sap.ui.CustomWidget.myView.App
-    	      return sap.ui.core.mvc.Controller.extend("MyView.Template", {
-    	    	  
+
+    	      return sap.ui.core.mvc.Controller.extend("myView.Template", {
+
     	        onInit: function() {
     	          console.log(that._export_settings.title);
     	          console.log("widgetName:" + that.widgetName);
@@ -317,7 +309,7 @@
     	            that._firstConnection = 1;
     	          }
     	        },
-    	        //console.log("Hello-6");
+
     	        onValidate: function(e) {
 
     	          var fU = this.getView().byId("idfileUploader");
@@ -464,7 +456,6 @@
     	      oView.byId("idfileUploader").setEnabled(false);
     	    }
     	  });
-    	  
     	}
     
     function createGuid() {
