@@ -308,7 +308,7 @@
     	      console.log("Hello-6");
     	      //sap.ui.CustomWidget.myView.App
     	      return sap.ui.core.mvc.Controller.extend("MyView.Template", {
-    	    	  console.log("Hello?")
+    	    	  console.log("Hello?");
     	        onInit: function() {
     	          console.log(that._export_settings.title);
     	          console.log("widgetName:" + that.widgetName);
