@@ -1,5 +1,5 @@
 (function() {
-    console.log("ABC")
+    //console.log("ABC")
 	let _shadowRoot;
     let _id;
     let _result ;
@@ -282,7 +282,7 @@
     	    //sap.ui.localResources("myView.Template");
     	    //sap.ui.localResources("myView");
     	    //### Controller ###
-    	    console.log("Hello-5")
+    	    //console.log("Hello-5")
     	    sap.ui.require([
     	      "jquery.sap.global",
     	      "sap/ui/core/mvc/Controller",
@@ -317,7 +317,7 @@
     	            that._firstConnection = 1;
     	          }
     	        },
-    	        console.log("Hello-6");
+    	        //console.log("Hello-6");
     	        onValidate: function(e) {
 
     	          var fU = this.getView().byId("idfileUploader");
