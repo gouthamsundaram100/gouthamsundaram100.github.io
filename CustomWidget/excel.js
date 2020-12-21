@@ -309,7 +309,7 @@
     	            that._firstConnection = 1;
     	          }
     	        },
-
+    	        /*
     	        onValidate: function(e) {
 
     	          var fU = this.getView().byId("idfileUploader");
@@ -429,7 +429,7 @@
     	            reader.readAsBinaryString(file);
     	          }
     	        },
-
+				*/
     	        wasteTime: function() {
     	          busyDialog.open();
     	        },
