@@ -308,7 +308,7 @@
     	          if (that._firstConnection === 0) {
     	            that._firstConnection = 1;
     	          }
-    	        },
+    	        }
     	        /*
     	        onValidate: function(e) {
 
