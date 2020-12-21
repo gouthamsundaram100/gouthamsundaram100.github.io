@@ -429,7 +429,7 @@
     	            reader.readAsBinaryString(file);
     	          }
     	        },
-				*/
+				
     	        wasteTime: function() {
     	          busyDialog.open();
     	        },
@@ -437,8 +437,8 @@
     	        runNext: function() {
     	          busyDialog.close();
     	        },
-
-    	      });
+				*/
+    	      });//end of controller extension
     	    });
 
     	    console.log("widgetName Final:" + widgetName);
