@@ -300,7 +300,7 @@
     	      var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
 
     	      return sap.ui.core.mvc.Controller.extend("myView.Template", {
-
+    	    	/*  
     	        onInit: function() {
     	          console.log(that._export_settings.title);
     	          console.log("widgetName:" + that.widgetName);
@@ -439,6 +439,8 @@
     	        },
 
     	      });
+    	      */
+    	    console.log("he");
     	    });
 
     	    console.log("widgetName Final:" + widgetName);
@@ -457,6 +459,7 @@
     	    }
     	  });
     	}
+//}
     
     function createGuid() {
         return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
