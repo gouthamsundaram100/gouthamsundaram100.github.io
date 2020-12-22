@@ -274,7 +274,7 @@
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
-    	    jQuery.sap.registerModulePath("excel","https://gouthamsundaram100.github.io/CustomWidget/excel.js");
+    	    jQuery.sap.registerModulePath("excel","https://gouthamsundaram100.github.io/CustomWidget/excel");
     	    //### Controller ###
     	    sap.ui.require([
     	      "jquery.sap.global",
