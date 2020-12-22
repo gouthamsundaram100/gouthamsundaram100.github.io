@@ -299,7 +299,7 @@
 
     	      var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
 
-    	      return sap.ui.core.mvc.Controller.extend("https://gouthamsundaram100.github.io/CustomWidget/excel.js/myView/Template.controller.js", {
+    	      return Controller.extend("https://gouthamsundaram100.github.io/CustomWidget/excel.js/myView/Template.controller.js", {
 
     	        onInit: function() {
     	          console.log(that._export_settings.title);
