@@ -274,7 +274,7 @@
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
-    	    jQuery.sap.registerModulePath("sap.CustomWidget","https://gouthamsundaram100.github.io/");
+    	    jQuery.sap.registerModulePath("sap.CustomWidget","https://gouthamsundaram100.github.io/CustomWidget");
     	    //### Controller ###
     	    sap.ui.require([
     	      "jquery.sap.global",
