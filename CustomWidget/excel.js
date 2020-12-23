@@ -247,7 +247,7 @@
 
     	  if (that._firstConnection === 0) {
     	    let div0 = document.createElement('div');
-    	    div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="oView_Excel_1.excel"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
+    	    div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="excel.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
     	    _shadowRoot.appendChild(div0);
     	    // https://sapui5.hana.ondemand.com/1.60.29/resources/myView/Template.controller.js
     	    let div1 = document.createElement('div');
@@ -274,7 +274,7 @@
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
-    	    jQuery.sap.registerModulePath("oView_Excel_1","https://gouthamsundaram100.github.io/CustomWidget");
+    	    //jQuery.sap.registerModulePath("oView_Excel_1","https://gouthamsundaram100.github.io/CustomWidget");
     	    //### Controller ###
     	    sap.ui.require([
     	      "jquery.sap.global",
@@ -299,7 +299,7 @@
 
     	      var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
 
-    	      return Controller.extend("oView_Excel_1.excel", {
+    	      return Controller.extend("excel.Template", {
 
     	        onInit: function() {
     	          console.log(that._export_settings.title);
