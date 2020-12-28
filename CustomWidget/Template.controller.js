@@ -18,7 +18,7 @@
     	      'sap/m/BusyDialog'
     	    ], function(jQuery, Controller, JSONModel, MessageToast, coreLibrary, Core, Filter, mobileLibrary, MessageBox, DateRange, DateFormat, BindingMode, Fragment, Token, FilterOperator, ODataModel, BusyDialog) {
     	      "use strict";
-
+    	      var that=that;
     	      var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
 
     	      return Controller.extend("CustomWidget.Excel", {
