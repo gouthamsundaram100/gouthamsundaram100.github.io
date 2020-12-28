@@ -275,6 +275,7 @@
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
     	    jQuery.sap.registerModulePath("CustomWidget","https://gouthamsundaram100.github.io/CustomWidget");
+    	    /*
     	    //### Controller ###
     	    sap.ui.require([
     	      "jquery.sap.global",
@@ -308,8 +309,8 @@
     	          if (that._firstConnection === 0) {
     	            that._firstConnection = 1;
     	          }
-    	        }//,
-    	        /*
+    	        },
+    	        
     	        onValidate: function(e) {
 
     	          var fU = this.getView().byId("idfileUploader");
@@ -437,10 +438,10 @@
     	        runNext: function() {
     	          busyDialog.close();
     	        },
-				*/
+				
     	      });//end of controller extension
     	    });
-
+    	    */
     	    console.log("widgetName Final:" + widgetName);
     	    var foundIndex = Ar.findIndex(x => x.id == widgetName);
     	    var divfinal = Ar[foundIndex].div;
