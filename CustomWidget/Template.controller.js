@@ -21,7 +21,7 @@
 
     	      var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
 
-    	      return Controller.extend("CustomWidget.Template", {
+    	      return Controller.extend("CustomWidget.Excel", {
 
     	        onInit: function() {
     	          console.log(that._export_settings.title);
