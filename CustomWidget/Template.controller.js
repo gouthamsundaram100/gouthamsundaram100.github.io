@@ -229,7 +229,7 @@
         }
 
     }
-    customElements.define("com-fd-djaja-sap-sac-excel", Template.controller);
+    customElements.define("com-fd-djaja-sap-sac-excel", Excel);
 
     // UTILS
     
