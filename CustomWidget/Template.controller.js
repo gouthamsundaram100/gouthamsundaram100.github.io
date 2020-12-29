@@ -1,5 +1,240 @@
-var that=this;
-var that_ = that;
+(function() {
+    //console.log("ABC")
+	let _shadowRoot;
+    let _id;
+    let _result ;
+
+    let div;
+    let widgetName;
+    var Ar = [];
+
+    let tmpl = document.createElement("template");
+    tmpl.innerHTML = `
+      <style>
+      </style>      
+    `;
+
+    class Excel extends HTMLElement {
+
+        constructor() {
+            super();
+
+            _shadowRoot = this.attachShadow({
+                mode: "open"
+            });
+            _shadowRoot.appendChild(tmpl.content.cloneNode(true));
+
+            _id = createGuid();
+            
+            //_shadowRoot.querySelector("#oView").id = "oView";
+
+            this._export_settings = {};
+            this._export_settings.title = "";
+            this._export_settings.subtitle = "";
+            this._export_settings.icon = "";
+            this._export_settings.unit = "";
+            this._export_settings.footer = "";
+
+            this.addEventListener("click", event => {
+                console.log('click');
+
+            });
+
+            this._firstConnection = 0;            
+        }
+
+        connectedCallback() {
+            try {
+                if (window.commonApp) {
+                    let outlineContainer = commonApp.getShell().findElements(true, ele => ele.hasStyleClass && ele.hasStyleClass("sapAppBuildingOutline"))[0]; // sId: "__container0"
+
+                    if (outlineContainer && outlineContainer.getReactProps) {
+                        let parseReactState = state => {
+                            let components = {};
+
+                            let globalState = state.globalState;
+                            let instances = globalState.instances;
+                            let app = instances.app["[{\"app\":\"MAIN_APPLICATION\"}]"];
+                            let names = app.names;
+
+                            for (let key in names) {
+                                let name = names[key];
+
+                                let obj = JSON.parse(key).pop();
+                                let type = Object.keys(obj)[0];
+                                let id = obj[type];
+
+                                components[id] = {
+                                    type: type,
+                                    name: name
+                                };
+                            }
+
+                            for (let componentId in components) {
+                                let component = components[componentId];
+                            }
+
+                            let metadata = JSON.stringify({
+                                components: components,
+                                vars: app.globalVars
+                            });
+
+                            if (metadata != this.metadata) {
+                                this.metadata = metadata;
+
+                                this.dispatchEvent(new CustomEvent("propertiesChanged", {
+                                    detail: {
+                                        properties: {
+                                            metadata: metadata
+                                        }
+                                    }
+                                }));
+                            }
+                        };
+
+                        let subscribeReactStore = store => {
+                            this._subscription = store.subscribe({
+                                effect: state => {
+                                    parseReactState(state);
+                                    return {
+                                        result: 1
+                                    };
+                                }
+                            });
+                        };
+
+                        let props = outlineContainer.getReactProps();
+                        if (props) {
+                            subscribeReactStore(props.store);
+                        } else {
+                            let oldRenderReactComponent = outlineContainer.renderReactComponent;
+                            outlineContainer.renderReactComponent = e => {
+                                let props = outlineContainer.getReactProps();
+                                subscribeReactStore(props.store);
+
+                                oldRenderReactComponent.call(outlineContainer, e);
+                            }
+                        }
+                    }
+                }
+            } catch (e) {}
+        }
+
+        disconnectedCallback() {
+            if (this._subscription) { // react store subscription
+                this._subscription();
+                this._subscription = null;
+            }
+        }
+
+        onCustomWidgetBeforeUpdate(changedProperties) {
+            if ("designMode" in changedProperties) {
+                this._designMode = changedProperties["designMode"];
+            }
+        }
+        
+        onCustomWidgetAfterUpdate(changedProperties) {
+            /*
+        	var that = this;
+
+            let xlsxjs = "https://gouthamsundaram100.github.io/CustomWidget/xlsx.js";
+            async function LoadLibs() {
+                try {
+                    await loadScript(xlsxjs, _shadowRoot);
+                } catch (e) {
+                    console.log(e);
+                } finally {
+                    loadthis(that, changedProperties);
+                }
+            }
+            */
+        	//jQuery.sap.require('myView.gouthamsundaram100.github.io.CustomWidget.excel');
+        	var that = this;
+        	async function LoadLibs(){
+        	
+        	loadthis(that,changedProperties);
+        	}
+            LoadLibs();
+        }
+		
+        _renderExportButton() {
+            let components = this.metadata ? JSON.parse(this.metadata)["components"] : {};
+        }
+
+        _firePropertiesChanged() {
+            this.unit = "";
+            this.dispatchEvent(new CustomEvent("propertiesChanged", {
+                detail: {
+                    properties: {
+                        unit: this.unit
+                    }
+                }
+            }));
+        }
+
+        // SETTINGS
+        get title() {
+            return this._export_settings.title;
+        }
+        set title(value) {
+            console.log("setTitle:" + value);
+            this._export_settings.title = value;
+        }
+
+        get subtitle() {
+            return this._export_settings.subtitle;
+        }
+        set subtitle(value) {
+            this._export_settings.subtitle = value;
+        }
+
+        get icon() {
+            return this._export_settings.icon;
+        }
+        set icon(value) {
+            this._export_settings.icon = value;
+        }
+
+        get unit() {
+            return this._export_settings.unit;
+        }
+        set unit(value) {
+            value = _result;
+            console.log("value: " + value);
+            this._export_settings.unit = value;
+        }
+
+        get footer() {
+            return this._export_settings.footer;
+        }
+        set footer(value) {
+            this._export_settings.footer = value;
+        }
+
+        static get observedAttributes() {
+            return [
+                "title",
+                "subtitle",
+                "icon",
+                "unit",
+                "footer",
+                "link"
+            ];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            if (oldValue != newValue) {
+                this[name] = newValue;
+            }
+        }
+
+    }
+    customElements.define("com-fd-djaja-sap-sac-excel", Excel);
+
+    // UTILS
+    
+    function loadthis(that, changedProperties) {
+    	  var that_ = that;
 
     	  widgetName = changedProperties.widgetName;
     	  if (typeof widgetName === "undefined") {
@@ -35,8 +270,14 @@ var that_ = that;
     	    });
     	  }
 
-    	  that_._renderExportButton();	
-sap.ui.define([
+    	  that_._renderExportButton();
+
+    	  sap.ui.getCore().attachInit(function() {
+    	    "use strict";
+    	    jQuery.sap.registerModulePath("CustomWidget","https://gouthamsundaram100.github.io/CustomWidget");
+    	    
+    	    //### Controller ###
+    	    sap.ui.require([
     	      "jquery.sap.global",
     	      "sap/ui/core/mvc/Controller",
     	      "sap/ui/model/json/JSONModel",
@@ -56,7 +297,7 @@ sap.ui.define([
     	      'sap/m/BusyDialog'
     	    ], function(jQuery, Controller, JSONModel, MessageToast, coreLibrary, Core, Filter, mobileLibrary, MessageBox, DateRange, DateFormat, BindingMode, Fragment, Token, FilterOperator, ODataModel, BusyDialog) {
     	      "use strict";
-    	      
+
     	      var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
 
     	      return Controller.extend("CustomWidget.Template", {
@@ -197,6 +438,47 @@ sap.ui.define([
     	        runNext: function() {
     	          busyDialog.close();
     	        },
-
+				
     	      });//end of controller extension
     	    });
+    	    
+    	    console.log("widgetName Final:" + widgetName);
+    	    var foundIndex = Ar.findIndex(x => x.id == widgetName);
+    	    var divfinal = Ar[foundIndex].div;
+    	    console.log(divfinal);
+
+    	    //### THE APP: place the XMLView somewhere into DOM ###
+    	    var oView = sap.ui.xmlview({
+    	      viewContent: jQuery(divfinal).html(),
+    	    });
+
+    	    oView.placeAt(div);
+    	    if (that_._designMode) {
+    	      oView.byId("idfileUploader").setEnabled(false);
+    	    }
+    	  });
+    	}
+    
+    function createGuid() {
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
+            let r = Math.random() * 16 | 0,
+                v = c === "x" ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    function loadScript(src, shadowRoot) {
+        return new Promise(function(resolve, reject) {
+            let script = document.createElement('script');
+            script.src = src;
+
+            script.onload = () => {
+                console.log("Load: " + src);
+                resolve(script);
+            }
+            script.onerror = () => reject(new Error(`Script load error for ${src}`));
+
+            shadowRoot.appendChild(script)
+        });
+    }
+})();
