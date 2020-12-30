@@ -229,8 +229,8 @@
         }
 
     }
-    customElements.define("com-fd-djaja-sap-sac-excel", Excel);
-
+    //customElements.define("com-fd-djaja-sap-sac-excel", Excel);
+    if (!customElements.get('com-fd-djaja-sap-sac-excel')) { customElements.define('com-fd-djaja-sap-sac-excel', Excel); }
     // UTILS
     
     function loadthis(that, changedProperties) {
