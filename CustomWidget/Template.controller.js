@@ -449,8 +449,8 @@
     	    console.log("hello2");
     	    //### THE APP: place the XMLView somewhere into DOM ###
     	    var oView = sap.ui.xmlview({
-    	      //viewContent: jQuery(divfinal).html(),
-    	    	viewContent: jQuery("myXMLFragment_" + widgetName).html(),
+    	      viewContent: jQuery(divfinal).html(),
+    	    	//viewContent: jQuery("myXMLFragment_" + widgetName).html(),
     	    });
 			
     	    oView.placeAt(div);
