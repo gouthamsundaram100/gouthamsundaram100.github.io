@@ -399,6 +399,7 @@
     	                  oModel1.setData({
     	                    fname: file.name,
     	                  });
+    	                  console.log("hi!");
     	                  console.log(oModel);
 
     	                  _result = JSON.stringify(result_final);
