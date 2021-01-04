@@ -446,7 +446,7 @@
     	    console.log("widgetName Final:" + widgetName);
     	    var foundIndex = Ar.findIndex(x => x.id == widgetName);
     	    var divfinal = Ar[foundIndex].div;
-    	    console.log("div:" + String(divfinal));
+    	    console.log("div:" + divfinal.toString());
     	    console.log("hello2");
     	    //### THE APP: place the XMLView somewhere into DOM ###
     	    var oView = sap.ui.xmlview({
