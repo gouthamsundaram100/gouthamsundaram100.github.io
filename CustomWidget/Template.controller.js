@@ -445,14 +445,15 @@
     	    
     	    console.log("widgetName Final:" + widgetName);
     	    var foundIndex = Ar.findIndex(x => x.id == widgetName);
+    	    console.log("index:"+foundIndex.toString());
     	    var divfinal = Ar[foundIndex].div;
     	    console.log("div:" + divfinal.toString());
     	    console.log("hello2");
     	    console.log("oView_" + widgetName + "");
     	    //### THE APP: place the XMLView somewhere into DOM ###
     	    var oView = sap.ui.xmlview({
-    	      //viewContent: jQuery(divfinal).html(),
-    	    	viewContent: jQuery("#oView_Excel_1").html(),
+    	      viewContent: jQuery(divfinal).html(),
+    	    	//viewContent: jQuery("#oView_Excel_1").html(),
     	    });
 			
     	    oView.placeAt(div);
