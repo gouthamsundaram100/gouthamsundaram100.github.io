@@ -459,7 +459,7 @@
     	    	viewContent: jQuery("#oView_Excel_1").html(),
     	    });
 			*/
-    	    var oView = sap.ui.xmlview("oView", {viewContent:jQuery('#oView_Excel_1').html()});
+    	    var oView = sap.ui.xmlview("oView", {viewName:jQuery('CustomWidget.Template').html()});
     	    oView.placeAt(div);
     	    if (that_._designMode) {
     	      oView.byId("idfileUploader").setEnabled(false);
