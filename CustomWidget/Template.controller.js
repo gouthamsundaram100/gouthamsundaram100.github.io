@@ -453,11 +453,13 @@
     	    console.log("hello2");
     	    console.log("oView_" + widgetName + "");
     	    //### THE APP: place the XMLView somewhere into DOM ###
+    	    /*
     	    var oView = sap.ui.xmlview({
     	      //viewContent: jQuery(divfinal).html(),
     	    	viewContent: jQuery("#oView_Excel_1").html(),
     	    });
-			
+			*/
+    	    var oView = sap.ui.xmlview("oView", {viewContent:jQuery('#oView_Excel_1').html()});
     	    oView.placeAt(div);
     	    if (that_._designMode) {
     	      oView.byId("idfileUploader").setEnabled(false);
