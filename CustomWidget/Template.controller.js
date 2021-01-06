@@ -277,7 +277,7 @@
     	    //jQuery.sap.registerModulePath("CustomWidget","https://gouthamsundaram100.github.io/CustomWidget");
     	    
     	    //### Controller ###
-    	    sap.ui.define([
+    	    sap.ui.require([
     	      "jquery.sap.global",
     	      "sap/ui/core/mvc/Controller",
     	      "sap/ui/model/json/JSONModel",
