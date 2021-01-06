@@ -274,10 +274,10 @@
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
-    	    jQuery.sap.registerModulePath("CustomWidget","https://gouthamsundaram100.github.io/CustomWidget");
+    	    //jQuery.sap.registerModulePath("CustomWidget","https://gouthamsundaram100.github.io/CustomWidget");
     	    
     	    //### Controller ###
-    	    sap.ui.require([
+    	    sap.ui.define([
     	      "jquery.sap.global",
     	      "sap/ui/core/mvc/Controller",
     	      "sap/ui/model/json/JSONModel",
@@ -453,13 +453,13 @@
     	    console.log("hello2");
     	    console.log("oView_" + widgetName + "");
     	    //### THE APP: place the XMLView somewhere into DOM ###
-    	    /*
+    	    
     	    var oView = sap.ui.xmlview({
     	      //viewContent: jQuery(divfinal).html(),
     	    	viewContent: jQuery("#oView_Excel_1").html(),
     	    });
-			*/
-    	    var oView = sap.ui.xmlview("oView", {viewName:jQuery('CustomWidget.Template').html()});
+			
+    	    //var oView = sap.ui.xmlview("oView", {viewName:jQuery('CustomWidget.Template').html()});
     	    oView.placeAt(div);
     	    if (that_._designMode) {
     	      oView.byId("idfileUploader").setEnabled(false);
