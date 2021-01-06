@@ -455,8 +455,8 @@
     	    //### THE APP: place the XMLView somewhere into DOM ###
     	    
     	    var oView = sap.ui.xmlview({
-    	      //viewContent: jQuery(divfinal).html(),
-    	    	viewContent: jQuery("#oView_Excel_1").html(),
+    	      viewContent: jQuery(divfinal).html(),
+    	    	//viewContent: jQuery("#oView_Excel_1").html(),
     	    });
 			
     	    //var oView = sap.ui.xmlview("oView", {viewName:jQuery('CustomWidget.Template').html()});
