@@ -11,7 +11,25 @@
     let tmpl = document.createElement("template");
     tmpl.innerHTML = `
       <style>
-      </style>      
+      </style>
+      <div id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '">
+      <slot name="content_' + widgetName + '"></slot>
+      </div>
+      
+      <script id="myXMLFragment_' + widgetName + '" type="sapui5/fragment"><core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"><SelectDialog title="Partner Number" class="sapUiPopupWithPadding"  items="{' + widgetName + '>/}" search="_handleValueHelpSearch"  confirm="_handleValueHelpClose"  cancel="_handleValueHelpClose"  multiSelect="true" showClearButton="true" rememberSelections="true"><StandardListItem icon="{' + widgetName + '>ProductPicUrl}" iconDensityAware="false" iconInset="false" title="{' + widgetName + '>partner}" description="{' + widgetName + '>partner}" /></SelectDialog></core:FragmentDefinition></script>
+      
+      <script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview">
+    	<mvc:View height="100%" 
+    		xmlns="sap.m" 
+    		xmlns:u="sap.ui.unified" 
+    		xmlns:f="sap.ui.layout.form" 
+    		xmlns:core="sap.ui.core" 
+    		xmlns:mvc="sap.ui.core.mvc" 
+    		controllerName="CustomWidget.Template">
+    		<f:SimpleForm editable="true">
+    		<f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm>
+    		</mvc:View>
+    		</script>'
     `;
 
     class Excel extends HTMLElement {
@@ -275,7 +293,7 @@
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
     	    jQuery.sap.registerModulePath("CustomWidget","https://gouthamsundaram100.github.io/CustomWidget");
-    	    
+    	    // Uncaught (in promise) Error: failed to load 'myView/Template.controller.js' from https://sapui5.hana.ondemand.com/1.60.29/resources/myView/Template.controller.js
     	    //### Controller ###
     	    sap.ui.require([
     	      "jquery.sap.global",
