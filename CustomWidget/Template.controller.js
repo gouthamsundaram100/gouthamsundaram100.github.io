@@ -170,7 +170,8 @@
  
          //When the custom widget is updated, the Custom Widget SDK framework executes this function after the update
          onCustomWidgetAfterUpdate(oChangedProperties) {
-             loadthis(this,oChangedProperties);  
+             var that = this;
+        	 loadthis(that,oChangedProperties);  
          }
 
 
