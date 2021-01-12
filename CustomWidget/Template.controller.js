@@ -439,6 +439,7 @@
     	          if (typeof file !== 'undefined') {
     	            reader.readAsBinaryString(file);
     	          }
+    	          console.log("Is it working?");
     	        },
 
     	        wasteTime: function() {
