@@ -170,7 +170,7 @@
  
          //When the custom widget is updated, the Custom Widget SDK framework executes this function after the update
          onCustomWidgetAfterUpdate(oChangedProperties) {
-             loadthis(this);  
+             loadthis(this,oChangedProperties);  
          }
 
 
@@ -246,7 +246,7 @@
     function loadthis(that, changedProperties) {
     	  var that_ = that;
 
-    	  var widgetName = changedProperties.widgetName;
+    	  widgetName = changedProperties.widgetName;
     	  if (typeof widgetName === "undefined") {
     	    widgetName = that._export_settings.title.split("|")[0];
     	  }
