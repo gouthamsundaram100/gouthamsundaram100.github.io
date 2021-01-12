@@ -281,13 +281,13 @@
     	    });
     	  }
 
-    	  //that_._renderExportButton();
+    	  that_._renderExportButton();
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
 
     	    //### Controller ###
-    	    sap.ui.require([
+    	    sap.ui.define([
     	      "jquery.sap.global",
     	      "sap/ui/core/mvc/Controller",
     	      "sap/ui/model/json/JSONModel",
