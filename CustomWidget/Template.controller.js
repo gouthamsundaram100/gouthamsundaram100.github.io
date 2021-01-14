@@ -1,246 +1,212 @@
-(function()  {
+(function() {
     let _shadowRoot;
     let _id;
-    let _date;   
-    let _result ;
-
+    let _score;
+    let _result;
     let div;
     let widgetName;
     var Ar = [];
+
     let tmpl = document.createElement("template");
-     tmpl.innerHTML = `
-     <style>
-     </style>
-     <div id="ui5_content" name="ui5_content">
-       <slot name="content"></slot>
-     </div>
-    <script id="oView" name="oView" type="sapui5/xmlview">
-<mvc:View 
-	height="100%" 
-	xmlns="sap.m" 
-	xmlns:u="sap.ui.unified" 
-	xmlns:f="sap.ui.layout.form" 
-	xmlns:core="sap.ui.core" 
-	xmlns:mvc="sap.ui.core.mvc" 
-	controllerName="CustomWidget.Template"
-	>
-	<f:SimpleForm 
-		editable="true"
-	>
-	<f:content>
-	<Label text="Upload"></Label>
-	<VBox>
-	<u:FileUploader 
-		id="idfileUploader" 
-		width="100%" 
-		useMultipart="false" 
-		sendXHR="true" 
-		sameFilenameAllowed="true" 
-		buttonText="" 
-		fileType="XLSM" 
-		placeholder="" 
-		style="Emphasized" 
-		change="onValidate">
-	</u:FileUploader>
-	</VBox>
-	</f:content>
-	</f:SimpleForm>
-	</mvc:View>
-	</script>
-     `;
- 
-     class Excel extends HTMLElement {
-         constructor() {
-             super(); 
-             _shadowRoot = this.attachShadow({
-                 mode: "open"
-             });
-             _shadowRoot.appendChild(tmpl.content.cloneNode(true));
+    tmpl.innerHTML = `
+      <style>
+      </style>      
+    `;
 
-             _id = createGuid();
+    class Excel extends HTMLElement {
 
-             _shadowRoot.querySelector("#oView").id = _id + "_oView";
+        constructor() {
+            super();
 
-             this._export_settings = {};
-             this._export_settings.date = "";
+            _shadowRoot = this.attachShadow({
+                mode: "open"
+            });
+            _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-             this.addEventListener("click", event => {
-               
-                 console.log('click');
-             });
+            _id = createGuid();
 
+            //_shadowRoot.querySelector("#oView").id = "oView";
 
-                 
-         }
- 
-         //Fired when the widget is added to the html DOM of the page
-         connectedCallback() {
-             try {
-                 if (window.commonApp) {
-                     let outlineContainer = commonApp.getShell().findElements(true, ele => ele.hasStyleClass && ele.hasStyleClass("sapAppBuildingOutline"))[0]; // sId: "__container0"
+            this._export_settings = {};
+            this._export_settings.title = "";
+            this._export_settings.subtitle = "";
+            this._export_settings.icon = "";
+            this._export_settings.unit = "";
+            this._export_settings.footer = "";
 
-                     if (outlineContainer && outlineContainer.getReactProps) {
-                         let parseReactState = state => {
-                             let components = {};
+            this.addEventListener("click", event => {
+                console.log('click');
 
-                             let globalState = state.globalState;
-                             let instances = globalState.instances;
-                             let app = instances.app["[{\"app\":\"MAIN_APPLICATION\"}]"];
-                             let names = app.names;
+            });
 
-                             for (let key in names) {
-                                 let name = names[key];
+            this._firstConnection = 0;
+        }
 
-                                 let obj = JSON.parse(key).pop();
-                                 let type = Object.keys(obj)[0];
-                                 let id = obj[type];
+        connectedCallback() {
+            try {
+                if (window.commonApp) {
+                    let outlineContainer = commonApp.getShell().findElements(true, ele => ele.hasStyleClass && ele.hasStyleClass("sapAppBuildingOutline"))[0]; // sId: "__container0"
 
-                                 components[id] = {
-                                     type: type,
-                                     name: name
-                                 };
-                             }
+                    if (outlineContainer && outlineContainer.getReactProps) {
+                        let parseReactState = state => {
+                            let components = {};
 
-                             for (let componentId in components) {
-                                 let component = components[componentId];
-                             }
+                            let globalState = state.globalState;
+                            let instances = globalState.instances;
+                            let app = instances.app["[{\"app\":\"MAIN_APPLICATION\"}]"];
+                            let names = app.names;
 
-                             let metadata = JSON.stringify({
-                                 components: components,
-                                 vars: app.globalVars
-                             });
+                            for (let key in names) {
+                                let name = names[key];
 
-                             if (metadata != this.metadata) {
-                                 this.metadata = metadata;
+                                let obj = JSON.parse(key).pop();
+                                let type = Object.keys(obj)[0];
+                                let id = obj[type];
 
-                                 this.dispatchEvent(new CustomEvent("propertiesChanged", {
-                                     detail: {
-                                         properties: {
-                                             metadata: metadata
-                                         }
-                                     }
-                                 }));
-                             }
-                         };
+                                components[id] = {
+                                    type: type,
+                                    name: name
+                                };
+                            }
 
-                         let subscribeReactStore = store => {
-                             this._subscription = store.subscribe({
-                                 effect: state => {
-                                     parseReactState(state);
-                                     return {
-                                         result: 1
-                                     };
-                                 }
-                             });
-                         };
+                            for (let componentId in components) {
+                                let component = components[componentId];
+                            }
 
-                         let props = outlineContainer.getReactProps();
-                         if (props) {
-                             subscribeReactStore(props.store);
-                         } else {
-                             let oldRenderReactComponent = outlineContainer.renderReactComponent;
-                             outlineContainer.renderReactComponent = e => {
-                                 let props = outlineContainer.getReactProps();
-                                 subscribeReactStore(props.store);
+                            let metadata = JSON.stringify({
+                                components: components,
+                                vars: app.globalVars
+                            });
 
-                                 oldRenderReactComponent.call(outlineContainer, e);
-                             }
-                         }
-                     }
-                 }
-             } catch (e) { }
-         }
- 
-          //Fired when the widget is removed from the html DOM of the page (e.g. by hide)
-         disconnectedCallback() {
-             if (this._subscription) {
-                 this._subscription();
-                 this._subscription = null;
-             }
-         
-         }
- 
-          //When the custom widget is updated, the Custom Widget SDK framework executes this function first
-         onCustomWidgetBeforeUpdate(oChangedProperties) {
-             if ("designMode" in oChangedProperties) {
-                 this._designMode = oChangedProperties["designMode"];
-             }
- 
-         }
- 
-         //When the custom widget is updated, the Custom Widget SDK framework executes this function after the update
-         onCustomWidgetAfterUpdate(oChangedProperties) {
-             var that = this;
-        	 loadthis(that,oChangedProperties);  
-         }
+                            if (metadata != this.metadata) {
+                                this.metadata = metadata;
 
+                                this.dispatchEvent(new CustomEvent("propertiesChanged", {
+                                    detail: {
+                                        properties: {
+                                            metadata: metadata
+                                        }
+                                    }
+                                }));
+                            }
+                        };
 
-         _firePropertiesChanged() {
-             this.date = "";
-             this.dispatchEvent(new CustomEvent("propertiesChanged", {
-                 detail: {
-                     properties: {
-                         date: this.date
-                     }
-                 }
-             }));
-         }
-         // SETTINGS
-         get title() {
-             return this._export_settings.title;
-         }
-         set title(value) {
-             console.log("setTitle:" + value);
-             this._export_settings.title = value;
-         }
+                        let subscribeReactStore = store => {
+                            this._subscription = store.subscribe({
+                                effect: state => {
+                                    parseReactState(state);
+                                    return {
+                                        result: 1
+                                    };
+                                }
+                            });
+                        };
 
-         get subtitle() {
-             return this._export_settings.subtitle;
-         }
-         set subtitle(value) {
-             this._export_settings.subtitle = value;
-         }
+                        let props = outlineContainer.getReactProps();
+                        if (props) {
+                            subscribeReactStore(props.store);
+                        } else {
+                            let oldRenderReactComponent = outlineContainer.renderReactComponent;
+                            outlineContainer.renderReactComponent = e => {
+                                let props = outlineContainer.getReactProps();
+                                subscribeReactStore(props.store);
 
-         get icon() {
-             return this._export_settings.icon;
-         }
-         set icon(value) {
-             this._export_settings.icon = value;
-         }
+                                oldRenderReactComponent.call(outlineContainer, e);
+                            }
+                        }
+                    }
+                }
+            } catch (e) {}
+        }
 
-         get unit() {
-             return this._export_settings.unit;
-         }
-         set unit(value) {
-             value = _result;
-             console.log("value: " + value);
-             this._export_settings.unit = value;
-         }
+        disconnectedCallback() {
+            if (this._subscription) { // react store subscription
+                this._subscription();
+                this._subscription = null;
+            }
+        }
 
-         get footer() {
-             return this._export_settings.footer;
-         }
-         set footer(value) {
-             this._export_settings.footer = value;
-         }
+        onCustomWidgetBeforeUpdate(changedProperties) {
+            if ("designMode" in changedProperties) {
+                this._designMode = changedProperties["designMode"];
+            }
+        }
 
-         static get observedAttributes() {
-             return [
-                 "title",
-                 "subtitle",
-                 "icon",
-                 "unit",
-                 "footer",
-                 "link"
-             ];
-         }
-         attributeChangedCallback(name, oldValue, newValue) {
-             if (oldValue != newValue) {
-                 this[name] = newValue;
-             }
-         }
-         
-     }
+        onCustomWidgetAfterUpdate(changedProperties) {
+            var that = this;
+            loadthis(that, changedProperties);
+        }
+
+        _renderExportButton() {
+            let components = this.metadata ? JSON.parse(this.metadata)["components"] : {};
+        }
+
+        _firePropertiesChanged() {
+            this.unit = "";
+            this.dispatchEvent(new CustomEvent("propertiesChanged", {
+                detail: {
+                    properties: {
+                        unit: this.unit
+                    }
+                }
+            }));
+        }
+
+        // SETTINGS
+        get title() {
+            return this._export_settings.title;
+        }
+        set title(value) {
+            this._export_settings.title = value;
+        }
+
+        get subtitle() {
+            return this._export_settings.subtitle;
+        }
+        set subtitle(value) {
+            this._export_settings.subtitle = value;
+        }
+
+        get icon() {
+            return this._export_settings.icon;
+        }
+        set icon(value) {
+            this._export_settings.icon = value;
+        }
+
+        get unit() {
+            return this._export_settings.unit;
+        }
+        set unit(value) {
+            value = _score;
+            this._export_settings.unit = value;
+        }
+
+        get footer() {
+            return this._export_settings.footer;
+        }
+        set footer(value) {
+            this._export_settings.footer = value;
+        }
+
+        static get observedAttributes() {
+            return [
+                "title",
+                "subtitle",
+                "icon",
+                "unit",
+                "footer",
+                "link"
+            ];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            if (oldValue != newValue) {
+                this[name] = newValue;
+            }
+        }
+
+    }
     customElements.define("com-fd-djaja-sap-sac-excel", Excel);
 
     // UTILS
@@ -258,7 +224,7 @@
 
     	  if (that._firstConnection === 0) {
     	    let div0 = document.createElement('div');
-    	    div0.innerHTML = '<?xml version="1.0"?><script id="oView" name="oView" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="CustomWidget.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
+    	    div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View height="100%" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="myView.Template"><f:SimpleForm editable="true"><f:content><Label text="Upload"></Label><VBox><u:FileUploader id="idfileUploader" width="100%" useMultipart="false" sendXHR="true" sameFilenameAllowed="true" buttonText="" fileType="XLSM" placeholder="" style="Emphasized" change="onValidate"></u:FileUploader></VBox></f:content></f:SimpleForm></mvc:View></script>';
     	    _shadowRoot.appendChild(div0);
 
     	    let div1 = document.createElement('div');
@@ -281,7 +247,7 @@
     	    });
     	  }
 
-    	  //that_._renderExportButton();
+    	  that_._renderExportButton();
 
     	  sap.ui.getCore().attachInit(function() {
     	    "use strict";
@@ -310,7 +276,7 @@
 
     	      var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
 
-    	      return Controller.extend("CustomWidget.Template", {
+    	      return Controller.extend("myView.Template", {
 
     	        onInit: function() {
     	          console.log(that._export_settings.title);
@@ -439,7 +405,6 @@
     	          if (typeof file !== 'undefined') {
     	            reader.readAsBinaryString(file);
     	          }
-    	          console.log("Is it working?");
     	        },
 
     	        wasteTime: function() {
@@ -455,21 +420,20 @@
 
     	    console.log("widgetName Final:" + widgetName);
     	    var foundIndex = Ar.findIndex(x => x.id == widgetName);
-    	    //var divfinal = Ar[foundIndex].div;
-    	    //console.log(divfinal);
+    	    var divfinal = Ar[foundIndex].div;
+    	    console.log(divfinal);
 
     	    //### THE APP: place the XMLView somewhere into DOM ###
-            var oView = sap.ui.xmlview({
-                viewContent: jQuery(_shadowRoot.getElementById(_id + "_oView")).html(),
-            });
-            oView.placeAt(content);
+    	    var oView = sap.ui.xmlview({
+    	      viewContent: jQuery(divfinal).html(),
+    	    });
 
-           
-            if (that_._designMode) {
-                oView.byId("dateInput").setEnabled(false);
-            }
-        });
-    }
+    	    oView.placeAt(div);
+    	    if (that_._designMode) {
+    	      oView.byId("idfileUploader").setEnabled(false);
+    	    }
+    	  });
+    	}
 
     function createGuid() {
         return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
@@ -477,7 +441,22 @@
                 v = c === "x" ? r : (r & 0x3 | 0x8);
             return v.toString(16);
         });
-    }  
+    }
+
+    function loadScript(src, shadowRoot) {
+        return new Promise(function(resolve, reject) {
+            let script = document.createElement('script');
+            script.src = src;
+
+            script.onload = () => {
+                console.log("Load: " + src);
+                resolve(script);
+            }
+            script.onerror = () => reject(new Error(`Script load error for ${src}`));
+
+            shadowRoot.appendChild(script)
+        });
+    }
 })();
 /*
 (function() {
