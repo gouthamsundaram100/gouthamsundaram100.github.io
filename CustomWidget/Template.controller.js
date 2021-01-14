@@ -300,7 +300,8 @@
     	          });
 
     	          var reader = new FileReader();
-    	          reader.onload = async function(e) {
+    	          //reader.onload = async function(e) {
+    	          reader.onload = function(e) {
     	            var strCSV = e.target.result;
 
     	            var workbook = XLSX.read(strCSV, {
