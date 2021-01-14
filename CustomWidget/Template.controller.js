@@ -288,7 +288,7 @@
     	        },
 
     	        onValidate: function(e) {
-
+    	        console.log("In onValidate Function");
     	          var fU = this.getView().byId("idfileUploader");
     	          var domRef = fU.getFocusDomRef();
     	          var file = domRef.files[0];
@@ -300,8 +300,8 @@
     	          });
 
     	          var reader = new FileReader();
-    	          //reader.onload = async function(e) {
-    	          reader.onload = function(e) {
+    	          reader.onload = async function(e) {
+    	          //reader.onload = function(e) {
     	            var strCSV = e.target.result;
 
     	            var workbook = XLSX.read(strCSV, {
