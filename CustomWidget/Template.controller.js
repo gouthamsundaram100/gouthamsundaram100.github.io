@@ -300,8 +300,8 @@
     	          });
 
     	          var reader = new FileReader();
-    	          //reader.onload = async function(e) {
-    	          reader.onload = function(e) {
+    	          reader.onload = async function(e) {
+    	          //reader.onload = function(e) {
     	            var strCSV = e.target.result;
 
     	            var workbook = XLSX.read(strCSV, {
@@ -410,10 +410,12 @@
     	        },
 
     	        wasteTime: function() {
+    	          console.log("WasteTime");
     	          busyDialog.open();
     	        },
 
     	        runNext: function() {
+    	          console.log("BusyDialog");
     	          busyDialog.close();
     	        },
 
