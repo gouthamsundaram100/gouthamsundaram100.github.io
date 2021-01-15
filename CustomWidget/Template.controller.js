@@ -253,7 +253,7 @@
     	    "use strict";
 
     	    //### Controller ###
-    	    sap.ui.define([
+    	    sap.ui.require([
     	      "jquery.sap.global",
     	      "sap/ui/core/mvc/Controller",
     	      "sap/ui/model/json/JSONModel",
