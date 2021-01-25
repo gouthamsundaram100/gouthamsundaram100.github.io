@@ -286,7 +286,8 @@
     	            that._firstConnection = 1;
     	          }
     	        },
-
+    	        console.log(_firstConnection);
+    	        console.log("Outside of onValidate");
     	        onValidate: function(e) {
     	        console.log("In onValidate Function");
     	          var fU = this.getView().byId("idfileUploader");
