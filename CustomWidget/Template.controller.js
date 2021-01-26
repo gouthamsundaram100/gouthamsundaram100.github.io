@@ -288,7 +288,7 @@
     	          }
     	        },
     	        //console.log((that._firstConnection).toString());
-    	        console.log("Outside of onValidate");
+    	        //console.log("Outside of onValidate");
     	        onValidate: function(e) {
     	        console.log("In onValidate Function");
     	          var fU = this.getView().byId("idfileUploader");
