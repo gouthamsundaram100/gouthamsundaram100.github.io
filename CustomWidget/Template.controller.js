@@ -284,9 +284,10 @@
 
     	          if (that._firstConnection === 0) {
     	            that._firstConnection = 1;
+    	            console.log("first connection");
     	          }
     	        },
-    	        console.log((that._firstConnection).toString());
+    	        //console.log((that._firstConnection).toString());
     	        console.log("Outside of onValidate");
     	        onValidate: function(e) {
     	        console.log("In onValidate Function");
