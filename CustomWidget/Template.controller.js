@@ -1,5 +1,5 @@
 (function() {
-    //xlsx,XLSX
+    //xlsx.js,XLSX
 	//m=src
 	//uploadonchange
 	let _shadowRoot;
@@ -136,8 +136,21 @@
         }
 
         onCustomWidgetAfterUpdate(changedProperties) {
-            var that = this;
-            loadthis(that, changedProperties);
+        	var that = this;
+
+            let xlsxjs = "https://gouthamsundaram100.github.io/CustomWidget/xlsx.js";
+            async function LoadLibs() {
+                try {
+                    await loadScript(xlsxjs, _shadowRoot);
+                } catch (e) {
+                    console.log(e);
+                } finally {
+                    loadthis(that, changedProperties);
+                }
+            }
+            LoadLibs();
+        	//var that = this;
+            //loadthis(that, changedProperties);
         }
 
         _renderExportButton() {
@@ -330,7 +343,8 @@
     	            });
 
     	            if (correctsheet) {
-    	              var lengthfield = result.split("[$@~!~@$]")[0].split("[#@~!~@#]").length;
+    	            console.log("In correctsheet");  
+    	            var lengthfield = result.split("[$@~!~@$]")[0].split("[#@~!~@#]").length;
     	              console.log("lengthfield: " + lengthfield);
 
     	              var total = this_.getView().byId("total");
@@ -372,6 +386,7 @@
     	                  MessageToast.show("Maximum records are 2000.");
     	                } else {
     	                  // Bind the data to the Table
+    	                	console.log("Binding data");
     	                  oModel = new JSONModel();
     	                  oModel.setSizeLimit("5000");
     	                  oModel.setData({
