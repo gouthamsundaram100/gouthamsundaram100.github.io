@@ -1,5 +1,5 @@
 (function() {
-    //xlsx
+    //xlsx,XLSX
 	//m=src
 	//uploadonchange
 	let _shadowRoot;
