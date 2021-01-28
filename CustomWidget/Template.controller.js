@@ -1,5 +1,6 @@
 (function() {
-    let _shadowRoot;
+    //xlsm
+	let _shadowRoot;
     let _id;
     let _score;
     let _result;
