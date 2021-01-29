@@ -1,7 +1,7 @@
 (function() {
     //xlsx.js,XLSX
 	//m=src
-	//uploadonchange_result
+	//unit
 	let _shadowRoot;
     let _id;
     let _score;
@@ -158,7 +158,8 @@
         }
 
         _firePropertiesChanged() {
-            this.unit = "";
+            //this.unit = "";
+        	this.unit=unit();
             this.dispatchEvent(new CustomEvent("propertiesChanged", {
                 detail: {
                     properties: {
