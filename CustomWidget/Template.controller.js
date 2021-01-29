@@ -1,7 +1,7 @@
 (function() {
     //xlsx.js,XLSX
 	//m=src
-	//uploadonchange
+	//uploadonchange_result
 	let _shadowRoot;
     let _id;
     let _score;
@@ -400,7 +400,7 @@
     	                  console.log(oModel);
 
     	                  _result = JSON.stringify(result_final);
-
+    	                  console.log(_result);
     	                  that._firePropertiesChanged();
     	                  this.settings = {};
     	                  this.settings.result = "";
