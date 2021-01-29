@@ -158,8 +158,8 @@
         }
 
         _firePropertiesChanged() {
-            //this.unit = "";
-        	this.unit=unit();
+            this.unit = "";
+        	//this.unit=unit();
             this.dispatchEvent(new CustomEvent("propertiesChanged", {
                 detail: {
                     properties: {
