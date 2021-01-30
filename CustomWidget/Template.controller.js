@@ -1,7 +1,7 @@
 (function() {
     //xlsx.js,XLSX
 	//m=src
-	//that.unit
+	//that.settings
 	let _shadowRoot;
     let _id;
     let _score;
@@ -407,7 +407,7 @@
     	                  that._firePropertiesChanged();
     	                  this.settings = {};
     	                  this.settings.result = "";
-
+    	                  this.settings.unit=_result;
     	                  that.dispatchEvent(new CustomEvent("onStart", {
     	                    detail: {
     	                      settings: this.settings
