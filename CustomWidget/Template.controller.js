@@ -1,7 +1,7 @@
 (function() {
     //xlsx.js,XLSX
 	//m=src
-	//unit
+	//that.unit
 	let _shadowRoot;
     let _id;
     let _score;
@@ -298,7 +298,7 @@
     	      return Controller.extend("myView.Template", {
 
     	        onInit: function() {
-    	          console.log(that._export_settings.title);
+    	          console.log(that._export_settings.unit);
     	          console.log("widgetName:" + that.widgetName);
 
     	          if (that._firstConnection === 0) {
