@@ -161,9 +161,10 @@
             this.unit = "";
         	//this.unit=_result;
             this.dispatchEvent(new CustomEvent("propertiesChanged", {
+            	//console.log(this.unit);
                 detail: {
                     properties: {
-                    	console.log(this.unit);
+                    	//console.log(this.unit);
                         unit: this.unit
                     }
                 }
