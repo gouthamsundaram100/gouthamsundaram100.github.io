@@ -1,7 +1,7 @@
 (function() {
     //xlsx.js,XLSX
 	//m=src
-	//unit
+	//_result
 	let _shadowRoot;
     let _id;
     let _score;
