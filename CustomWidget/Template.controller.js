@@ -1,7 +1,7 @@
 (function() {
     //xlsx.js,XLSX
 	//m=src
-	//firestring(result)
+	//firestring(result);
 	let _shadowRoot;
     let _id;
     let _score;
@@ -166,7 +166,7 @@
                     properties: {
                     	//console.log(this.unit);
                         //unit: this.unit
-                    	unit: String(_result);
+                    	unit: String(_result)
                     }
                 }
             }));
